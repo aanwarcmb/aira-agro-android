@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#14532d"><title>Aira Agro Fram</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+:root{--green:#14532d;--green2:#166534;--mint:#dcfce7;--bg:#f4f7f4;--ink:#17231b;--muted:#647067;--line:#e2e8e2;--gold:#d6a83b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif}
+header{background:linear-gradient(120deg,#123c26,#197044);color:white;padding:20px max(16px,calc((100% - 1150px)/2));}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:14px;background:#ffffff20;display:grid;place-items:center;font-size:25px;border:1px solid #ffffff45}
+h1{font-size:24px;margin:0}header p{margin:2px 0 0;color:#d1fae5;font-size:13px}
+.wrap{max-width:1150px;margin:auto;padding:18px 16px 50px}
+.nav{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}.nav button,.btn{border:0;border-radius:10px;padding:10px 14px;font:600 14px inherit;cursor:pointer;background:#e5eee7;color:#23432e;white-space:nowrap}
+.nav button.active,.btn.primary{background:var(--green);color:white}.btn.gold{background:#fff3cf;color:#77520a}.btn.danger{background:#fee2e2;color:#991b1b}.btn.small{padding:6px 10px;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 3px 12px #153b2010}
+.metric small{color:var(--muted);font-size:13px}.metric strong{display:block;font-size:23px;margin-top:5px;color:var(--green)}
+.section{display:none}.section.active{display:block}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 0 14px;flex-wrap:wrap}
+h2{font-size:20px;margin:0}h3{font-size:16px;margin:0 0 12px}
+.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field label{display:block;font-size:13px;color:#47564b;margin-bottom:4px}.field input,.field select,.field textarea{width:100%;padding:10px 11px;border:1px solid #d5dfd6;border-radius:9px;font:14px inherit;background:#fff;color:var(--ink)}.field textarea{min-height:40px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tablewrap{overflow:auto;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);font-size:13px}th{background:#f0f6f1;color:#365440;position:sticky;top:0}td .btn{margin:2px}
+.muted{color:var(--muted);font-size:13px}.notice{background:#fff8df;border:1px solid #f3dfa0;padding:12px 14px;border-radius:12px;font-size:13px;margin:12px 0}.status{font-size:12px;color:#d1fae5;margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pill{display:inline-block;background:var(--mint);color:#14532d;padding:3px 8px;border-radius:20px;font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:24px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.wrap{padding:12px}.metric strong{font-size:20px}}
+@media(max-width:420px){.formgrid{grid-template-columns:1fr}.section-title h2{font-size:18px}}
+@media print{header,.nav,.actions,.no-print{display:none!important}body{background:white}.wrap{max-width:none;padding:0}.section{display:none!important}.section.active{display:block!important}.card{box-shadow:none}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">🌾</div><div><h1>Aira Agro Fram</h1><p>পোল্ট্রি ও কৃষি ব্যবসার ডিজিটাল হিসাবখাতা</p></div></div><div class="status" id="onlineStatus">● সংযোগ পরীক্ষা হচ্ছে...</div></header>
+<div class="wrap">
+<nav class="nav no-print">
+<button class="active" data-tab="home">🏠 হোম</button><button data-tab="poultry">🐔 মুরগি বিক্রি</button><button data-tab="rice">🌾 ধান</button><button data-tab="products">🧺 কৃষিপণ্য</button><button data-tab="expenses">💸 আয়-ব্যয়</button><button data-tab="reports">📊 রিপোর্ট</button><button data-tab="backup">☁️ ব্যাকআপ</button>
+</nav>
+<section id="home" class="section active">
+<div class="section-title"><h2>আজকের সারসংক্ষেপ</h2><span class="pill" id="today"></span></div>
+<div class="grid">
+<div class="card metric"><small>আজকের মোট বিক্রি</small><strong id="mSales">৳ ০</strong></div>
+<div class="card metric"><small>আজকের মোট ক্রয়</small><strong id="mBuys">৳ ০</strong></div>
+<div class="card metric"><small>আজকের খরচ</small><strong id="mExpenses">৳ ০</strong></div>
+<div class="card metric"><small>আজকের আনুমানিক লাভ</small><strong id="mProfit">৳ ০</strong></div>
+</div>
+<div class="two" style="margin-top:14px"><div class="card"><h3>দ্রুত হিসাব যোগ করুন</h3><div class="actions"><button class="btn primary" onclick="tab('poultry')">মুরগি বিক্রি</button><button class="btn" onclick="tab('rice')">ধানের হিসাব</button><button class="btn" onclick="tab('products')">কৃষিপণ্য</button><button class="btn" onclick="tab('expenses')">খরচ যোগ</button></div></div>
+<div class="card"><h3>সাম্প্রতিক লেনদেন</h3><div id="recent" class="muted">এখনো কোনো লেনদেন নেই।</div></div></div>
+<div class="notice">আপনার হিসাব এই ডিভাইসের ব্রাউজারে সংরক্ষিত হয়। নিয়মিত JSON ব্যাকআপ ডাউনলোড করে নিরাপদে রাখুন। Google Drive স্বয়ংক্রিয় ব্যাকআপ সংযোগ এই প্রাথমিক সংস্করণে সক্রিয় নয়।</div>
+</section>
+
+<section id="poultry" class="section">
+<div class="section-title"><h2>🐔 মুরগি বিক্রির হিসাব</h2><span class="pill">ব্রয়লার</span></div>
+<div class="card">
+<form id="poultryForm"><input type="hidden" name="id"><div class="formgrid">
+<div class="field"><label>বিক্রির তারিখ</label><input name="date" type="date" required></div><div class="field"><label>বিক্রির সময়</label><input name="time" type="time" required></div><div class="field"><label>ক্রেতার নাম</label><input name="person" required placeholder="ক্রেতার নাম"></div>
+<div class="field"><label>মোবাইল নম্বর</label><input name="phone" placeholder="ঐচ্ছিক"></div><div class="field"><label>মুরগির সংখ্যা (পিস)</label><input name="qty" type="number" min="0" step="1" required></div><div class="field"><label>মোট ওজন</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label>কেজি</label><input name="weightKg" type="number" min="0" step="1" value="0"></div><div><label>গ্রাম</label><input name="weightGm" type="number" min="0" max="999" step="1" value="0"></div></div></div>
+<div class="field"><label>প্রতি কেজির দাম (৳)</label><input name="rate" type="number" min="0" step="0.01" required></div><div class="field"><label>অগ্রিম/পরিশোধ (৳)</label><input name="paid" type="number" min="0" step="0.01" value="0"></div><div class="field"><label>মোট মূল্য (৳)</label><input name="total" readonly></div>
+<div class="field"><label>বাকি টাকা (৳)</label><input name="due" readonly></div><div class="field"><label>মন্তব্য</label><input name="note" placeholder="ঐচ্ছিক"></div></div><div class="actions"><button class="btn primary" type="submit">হিসাব সংরক্ষণ</button><button class="btn" type="reset" onclick="setTimeout(()=>initForm('poultryForm'),0)">নতুন এন্ট্রি</button></div></form>
+</div><div class="card" style="margin-top:14px"><h3>বিক্রির তালিকা</h3><div class="tablewrap" id="poultryTable"></div></div>
+</section>
+
+<section id="rice" class="section"><div class="section-title"><h2>🌾 ধান ক্রয়-বিক্রির হিসাব</h2></div>
+<div class="card"><form id="riceForm"><input type="hidden" name="id"><div class="formgrid">
+<div class="field"><label>লেনদেনের ধরন</label><select name="kind"><option value="ক্রয়">ক্রয়</option><option value="বিক্রি">বিক্রি</option></select></div><div class="field"><label>তারিখ</label><input name="date" type="date" required></div><div class="field"><label>সময়</label><input name="time" type="time" required></div>
+<div class="field"><label>ক্রেতা/বিক্রেতার নাম</label><input name="person" required></div><div class="field"><label>মোবাইল</label><input name="phone"></div><div class="field"><label>ধানের জাত</label><input name="item" placeholder="যেমন: BRRI ধান-২৮"></div>
+<div class="field"><label>পরিমাণ (মণ)</label><input name="qty" type="number" min="0" step="0.01" required></div><div class="field"><label>প্রতি মণের দাম (৳)</label><input name="rate" type="number" min="0" step="0.01" required></div><div class="field"><label>পরিবহন/অন্যান্য খরচ (৳)</label><input name="cost" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label>পরিশোধিত টাকা (৳)</label><input name="paid" type="number" min="0" step="0.01" value="0"></div><div class="field"><label>মোট মূল্য (৳)</label><input name="total" readonly></div><div class="field"><label>বাকি টাকা (৳)</label><input name="due" readonly></div>
+<div class="field"><label>মন্তব্য</label><input name="note"></div></div><div class="actions"><button class="btn primary">হিসাব সংরক্ষণ</button><button class="btn" type="reset" onclick="setTimeout(()=>initForm('riceForm'),0)">নতুন এন্ট্রি</button></div></form></div>
+<div class="card" style="margin-top:14px"><h3>ধানের লেনদেন</h3><div class="tablewrap" id="riceTable"></div></div></section>
+
+<section id="products" class="section"><div class="section-title"><h2>🧺 কৃষিপণ্য ক্রয়-বিক্রয়</h2></div>
+<div class="card"><form id="productForm"><input type="hidden" name="id"><div class="formgrid">
+<div class="field"><label>লেনদেনের ধরন</label><select name="kind"><option value="ক্রয়">ক্রয়</option><option value="বিক্রি">বিক্রি</option></select></div><div class="field"><label>তারিখ</label><input name="date" type="date" required></div><div class="field"><label>সময়</label><input name="time" type="time" required></div>
+<div class="field"><label>পণ্যের নাম</label><input name="item" required placeholder="যেমন: সরিষা"></div><div class="field"><label>ক্রেতা/বিক্রেতার নাম</label><input name="person" required></div><div class="field"><label>মোবাইল</label><input name="phone"></div>
+<div class="field"><label>পরিমাণ</label><input name="qty" type="number" min="0" step="0.01" required></div><div class="field"><label>একক</label><select name="unit"><option>কেজি</option><option>মণ</option><option>বস্তা</option><option>পিস</option><option>লিটার</option><option>প্যাকেট</option></select></div><div class="field"><label>একক মূল্য (৳)</label><input name="rate" type="number" min="0" step="0.01" required></div>
+<div class="field"><label>অতিরিক্ত খরচ (৳)</label><input name="cost" type="number" min="0" step="0.01" value="0"></div><div class="field"><label>পরিশোধিত টাকা (৳)</label><input name="paid" type="number" min="0" step="0.01" value="0"></div><div class="field"><label>মোট মূল্য (৳)</label><input name="total" readonly></div><div class="field"><label>বাকি টাকা (৳)</label><input name="due" readonly></div><div class="field"><label>মন্তব্য</label><input name="note"></div></div><div class="actions"><button class="btn primary">হিসাব সংরক্ষণ</button><button class="btn" type="reset" onclick="setTimeout(()=>initForm('productForm'),0)">নতুন এন্ট্রি</button></div></form></div>
+<div class="card" style="margin-top:14px"><h3>কৃষিপণ্যের লেনদেন</h3><div class="tablewrap" id="productTable"></div></div></section>
+
+<section id="expenses" class="section"><div class="section-title"><h2>💸 আয়-ব্যয় ও খরচ</h2></div><div class="card"><form id="expenseForm"><input type="hidden" name="id"><div class="formgrid">
+<div class="field"><label>ধরন</label><select name="kind"><option>খরচ</option><option>অন্যান্য আয়</option></select></div><div class="field"><label>তারিখ</label><input name="date" type="date" required></div><div class="field"><label>সময়</label><input name="time" type="time" required></div>
+<div class="field"><label>খরচের খাত</label><select name="item"><option>মুরগির খাদ্য</option><option>বাচ্চা ক্রয়</option><option>ওষুধ ও ভ্যাকসিন</option><option>বিদ্যুৎ বিল</option><option>শ্রমিকের বেতন</option><option>পরিবহন</option><option>কৃষি খরচ</option><option>অন্যান্য</option></select></div><div class="field"><label>টাকার পরিমাণ (৳)</label><input name="amount" type="number" min="0" step="0.01" required></div><div class="field"><label>বিবরণ</label><input name="note"></div></div><div class="actions"><button class="btn primary">সংরক্ষণ</button></div></form></div><div class="card" style="margin-top:14px"><h3>আয়-ব্যয়ের তালিকা</h3><div class="tablewrap" id="expenseTable"></div></div></section>
+
+<section id="reports" class="section"><div class="section-title"><h2>📊 রিপোর্ট</h2><button class="btn gold" onclick="window.print()">🖨️ প্রিন্ট / PDF</button></div><div class="card"><div class="formgrid"><div class="field"><label>শুরুর তারিখ</label><input id="fromDate" type="date"></div><div class="field"><label>শেষ তারিখ</label><input id="toDate" type="date"></div><div class="field" style="align-self:end"><button class="btn primary" onclick="renderReport()">রিপোর্ট দেখুন</button></div></div><div id="reportResult" style="margin-top:15px"></div></div></section>
+
+<section id="backup" class="section"><div class="section-title"><h2>☁️ ডাটা ব্যাকআপ ও পুনরুদ্ধার</h2></div><div class="card"><h3>আপনার হিসাব নিরাপদে রাখুন</h3><p class="muted">এই সংস্করণে ডাটা একই ব্রাউজারের IndexedDB-সমর্থিত স্থানীয় স্টোরেজে নয়, LocalStorage-এ রাখা হয়। JSON ফাইল ডাউনলোড করে Google Drive-এ আপলোড করুন।</p><div class="actions"><button class="btn primary" onclick="backup()">⬇️ সম্পূর্ণ ব্যাকআপ ডাউনলোড</button><label class="btn" for="restoreFile">⬆️ ব্যাকআপ Restore</label><input id="restoreFile" type="file" accept=".json,application/json" hidden><button class="btn danger" onclick="clearAll()">সব ডাটা মুছুন</button></div><div class="notice" id="backupInfo">শেষ ব্যাকআপ: এখনো তৈরি হয়নি।</div><h3 style="margin-top:20px">Google Drive সংযোগ</h3><p class="muted">স্বয়ংক্রিয় Drive Backup চালু করতে Google Cloud Console-এ OAuth 2.0 Client ID, Drive API এবং অনুমোদিত ডোমেইন সেটআপ প্রয়োজন। এই ডেমোতে Google Drive-এ স্বয়ংক্রিয় আপলোড সক্রিয় করা হয়নি।</p><div class="pill">লোকাল ডাটা সংরক্ষণ সক্রিয়</div></div></section>
+</div>
+<script>
+const keys=['poultry','rice','products','expenses']; let db=load();
+function load(){try{return JSON.parse(localStorage.getItem('airaAgroDB')||'{"poultry":[],"rice":[],"products":[],"expenses":[]}')}catch(e){return {poultry:[],rice:[],products:[],expenses:[]}}}
+function save(){localStorage.setItem('airaAgroDB',JSON.stringify(db));renderAll()}
+const fmt=n=>'৳ '+Number(n||0).toLocaleString('bn-BD',{maximumFractionDigits:2});
+const bnDate=d=>new Date(d+'T00:00:00').toLocaleDateString('bn-BD');
+function nowParts(){let d=new Date();return {date:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),time:String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}}
+function initForm(id){let f=document.getElementById(id);if(!f)return;let n=nowParts();f.elements.date.value=n.date;f.elements.time.value=n.time;calcForm(f)}
+function val(f,n){return Number(f.elements[n]?.value||0)}
+function calcForm(f){if(!f.elements.total)return;let total=0;if(f.id==='poultryForm')total=(val(f,'weightKg')+val(f,'weightGm')/1000)*val(f,'rate');else total=val(f,'qty')*val(f,'rate');f.elements.total.value=total.toFixed(2);if(f.elements.due)f.elements.due.value=Math.max(0,total+(f.elements.cost?val(f,'cost'):0)-val(f,'paid')).toFixed(2)}
+['poultryForm','riceForm','productForm'].forEach(id=>{let f=document.getElementById(id);f.addEventListener('input',()=>calcForm(f));f.addEventListener('submit',e=>{e.preventDefault();calcForm(f);let o=Object.fromEntries(new FormData(f).entries());if(id==='poultryForm'){o.weight=Number(o.weightKg||0)+Number(o.weightGm||0)/1000;delete o.weightKg;delete o.weightGm;}o.id=o.id||crypto.randomUUID();o.createdAt=new Date().toISOString();['qty','weight','rate','paid','cost','total','due'].forEach(k=>{if(o[k]!==undefined)o[k]=Number(o[k]||0)});let key=id==='poultryForm'?'poultry':id==='riceForm'?'rice':'products';let i=db[key].findIndex(x=>x.id===o.id);if(i>=0)db[key][i]=o;else db[key].unshift(o);save();f.reset();initForm(id);alert('হিসাব সফলভাবে সংরক্ষণ হয়েছে।')})});
+let ef=document.getElementById('expenseForm');ef.addEventListener('submit',e=>{e.preventDefault();let o=Object.fromEntries(new FormData(ef).entries());o.id=crypto.randomUUID();o.createdAt=new Date().toISOString();o.amount=Number(o.amount);db.expenses.unshift(o);save();ef.reset();initForm('expenseForm');alert('এন্ট্রি সংরক্ষণ হয়েছে।')});
+function tab(id){document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));if(id==='reports')renderReport()}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function table(key,target){
+ let rows=db[key];let cols=key==='poultry'?['date','person','qty','weight','rate','total','paid','due']:key==='expenses'?['date','kind','item','amount','note']:['date','kind','person','item','qty','rate','total','paid','due'];
+ let labels={date:'তারিখ',person:'নাম',qty:'পরিমাণ/পিস',weight:'ওজন (কেজি)',rate:'দর',total:'মোট',paid:'পরিশোধ',due:'বাকি',kind:'ধরন',item:'পণ্য/খাত',amount:'টাকা',note:'মন্তব্য'};let el=document.getElementById(target);
+ if(!rows.length){el.innerHTML='<div class="empty">এখনো কোনো হিসাব নেই।</div>';return;}
+ let head=cols.map(c=>`<th>${labels[c]}</th>`).join('');
+ let body=rows.map(r=>{let cells=cols.map(c=>`<td>${c==='date'?bnDate(r[c]):(['rate','total','paid','due','amount'].includes(c)?fmt(r[c]):(r[c]??'—'))}</td>`).join('');return `<tr>${cells}<td><button class="btn small" onclick="editRow('${key}','${r.id}')">এডিট</button><button class="btn small danger" onclick="delRow('${key}','${r.id}')">মুছুন</button></td></tr>`}).join('');
+ el.innerHTML=`<table><thead><tr>${head}<th>কাজ</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+function editRow(k,id){let r=db[k].find(x=>x.id===id);let form=document.getElementById(k==='poultry'?'poultryForm':k==='rice'?'riceForm':k==='products'?'productForm':'expenseForm');Object.keys(r).forEach(x=>{if(form.elements[x])form.elements[x].value=r[x]});tab(k==='poultry'?'poultry':k==='rice'?'rice':k==='products'?'products':'expenses');calcForm(form)}
+function delRow(k,id){if(confirm('এই হিসাবটি মুছে ফেলতে চান?')){db[k]=db[k].filter(x=>x.id!==id);save()}}
+function renderAll(){table('poultry','poultryTable');table('rice','riceTable');table('products','productTable');table('expenses','expenseTable');let today=nowParts().date;let sales=[...db.poultry,...db.rice.filter(x=>x.kind==='বিক্রি'),...db.products.filter(x=>x.kind==='বিক্রি')].filter(x=>x.date===today).reduce((s,x)=>s+Number(x.total||0),0);let buys=[...db.rice,...db.products].filter(x=>x.date===today&&x.kind==='ক্রয়').reduce((s,x)=>s+Number(x.total||0),0);let exp=db.expenses.filter(x=>x.date===today&&x.kind==='খরচ').reduce((s,x)=>s+x.amount,0);document.getElementById('mSales').textContent=fmt(sales);document.getElementById('mBuys').textContent=fmt(buys);document.getElementById('mExpenses').textContent=fmt(exp);document.getElementById('mProfit').textContent=fmt(sales-buys-exp);let all=[...db.poultry.map(x=>({...x,kind:'মুরগি বিক্রি'})),...db.rice,...db.products,...db.expenses].sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||'')).slice(0,5);document.getElementById('recent').innerHTML=all.length?all.map(x=>'<div style="padding:6px 0;border-bottom:1px solid #eee">'+(x.kind||'লেনদেন')+' — '+(x.person||x.item||'')+' <b>'+fmt(x.total||x.amount)+'</b></div>').join(''):'এখনো কোনো লেনদেন নেই।'}
+function renderReport(){let from=document.getElementById('fromDate').value,to=document.getElementById('toDate').value;let all=[...db.poultry.map(x=>({...x,kind:'মুরগি বিক্রি'})),...db.rice,...db.products,...db.expenses];all=all.filter(x=>(!from||x.date>=from)&&(!to||x.date<=to));let sales=all.filter(x=>x.kind==='বিক্রি'||x.kind==='মুরগি বিক্রি').reduce((s,x)=>s+Number(x.total||0),0);let buys=all.filter(x=>x.kind==='ক্রয়').reduce((s,x)=>s+Number(x.total||0),0);let ex=all.filter(x=>x.kind==='খরচ').reduce((s,x)=>s+Number(x.amount||0),0);let due=all.reduce((s,x)=>s+Number(x.due||0),0);document.getElementById('reportResult').innerHTML='<div class="grid"><div class="card metric"><small>মোট বিক্রি</small><strong>'+fmt(sales)+'</strong></div><div class="card metric"><small>মোট ক্রয়</small><strong>'+fmt(buys)+'</strong></div><div class="card metric"><small>খরচ</small><strong>'+fmt(ex)+'</strong></div><div class="card metric"><small>বকেয়া (লেনদেনভিত্তিক)</small><strong>'+fmt(due)+'</strong></div></div><p><b>বিক্রি − ক্রয় − খরচ (সরল নগদ-ভিত্তিক সূচক): '+fmt(sales-buys-ex)+'</b></p><p class="muted">এটি পূর্ণাঙ্গ মজুত-সমন্বিত নিট লাভ নয়। সঠিক লাভের জন্য পণ্যের স্টক ও বিক্রীত পণ্যের ক্রয়মূল্য নির্ধারণ করতে হবে।</p>'}
+function backup(){let blob=new Blob([JSON.stringify({app:'Aira Agro Fram',version:1,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='aira-agro-backup-'+nowParts().date+'.json';a.click();URL.revokeObjectURL(a.href);document.getElementById('backupInfo').textContent='ব্যাকআপ তৈরি: '+new Date().toLocaleString('bn-BD')}
+document.getElementById('restoreFile').addEventListener('change',e=>{let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.data||!confirm('বর্তমান হিসাবের বদলে ব্যাকআপের ডাটা Restore করবেন?'))return;db=x.data;save();alert('ব্যাকআপ Restore সম্পন্ন হয়েছে।')}catch(err){alert('ফাইলটি সঠিক ব্যাকআপ নয়।')}};r.readAsText(file)});
+function clearAll(){if(confirm('সতর্কতা: সব হিসাব স্থায়ীভাবে মুছে যাবে। আগে ব্যাকআপ নিয়েছেন?')&&confirm('নিশ্চিতভাবে সব ডাটা মুছবেন?')){db={poultry:[],rice:[],products:[],expenses:[]};save()}}
+function status(){document.getElementById('onlineStatus').textContent=navigator.onLine?'● অনলাইন':'● অফলাইন — ডিভাইসে হিসাব সংরক্ষণ হচ্ছে';}window.addEventListener('online',status);window.addEventListener('offline',status);
+document.getElementById('today').textContent=new Date().toLocaleDateString('bn-BD',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+['poultryForm','riceForm','productForm','expenseForm'].forEach(initForm);status();renderAll();
+</script></body></html>
